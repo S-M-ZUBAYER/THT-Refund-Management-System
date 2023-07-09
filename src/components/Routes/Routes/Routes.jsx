@@ -8,6 +8,7 @@ import Supply from "../../Pages/SupplyPage/Supply";
 import Repair from "../../Pages/RepairPage/Repair";
 import About from "../../Pages/AboutPage/About";
 import Login from "../../Pages/LogInPage/LogIn";
+import FullLogInPage from "../../Pages/LogInPage/FullLogInPage";
 
 
 
@@ -52,7 +53,7 @@ export const  routes=createBrowserRouter([
 
     {
         path:"/login",
-        element:<Login></Login>
+        element:<FullLogInPage></FullLogInPage>
     }
 
 ])

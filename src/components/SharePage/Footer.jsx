@@ -51,16 +51,16 @@ import GrozzieeLogo from "../.../../../assets/Grozziie_logo.jpg"
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    return (
-        <footer aria-label="Site Footer" className="bg-gray-100 text-black ">
-  <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
-   
+  return (
+    <footer aria-label="Site Footer" className="bg-gray-100 text-black ">
+      <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
 
-      <div
-        className="grid grid-cols-1 gap-8  md:grid-cols-3"
-      >
-         <div>
-         <Link className="block text-black" to="/home">
+
+        <div
+          className="grid grid-cols-1 gap-8  md:grid-cols-3"
+        >
+          <div>
+            <Link className="block text-black" to="/home">
               <span className="sr-only">Home</span>
               {/* <svg
                 className="h-8"
@@ -75,168 +75,173 @@ const Footer = () => {
               </svg> */}
               <img className="w-32 h-8" src={GrozzieeLogo}></img>
             </Link>
-          
-
-        <p
-          className="mt-6 max-w-md text-center leading-relaxed text-black  sm:max-w-xs sm:text-left"
-        >
-          123 Chaowai St, Chaoyang District, Beijing, 
-China, 100020
-        </p>
-
-      
 
 
-      
-      </div>
-        <div className="text-center sm:text-left">
-          {/* <p className="text-lg font-medium text-gray-900 dark:text-black">
+            <p
+              className="mt-6 max-w-md text-center leading-relaxed text-black  sm:max-w-xs sm:text-left"
+            >
+              123 Chaowai St, Chaoyang District, Beijing,
+              China, 100020
+            </p>
+
+
+
+
+
+          </div>
+          <div className="text-center sm:text-left">
+            {/* <p className="text-lg font-medium text-gray-900 dark:text-black">
             About Us
           </p> */}
 
-          <nav aria-label="Footer About Nav" className="mt-8">
-            <ul className=" text-xs md:text-sm text-center flex">
-              <li>
-                <a
-                  className="text-black transition "
-                  href="/"
-                >
-                  Home
-                </a>
-              </li>
+            <nav aria-label="Footer About Nav" className="mt-8">
+              <ul className=" text-xs md:text-sm flex justify-center">
+                <li>
+                  <a
+                    className="text-black transition "
+                    href="/"
+                  >
+                    Home
+                  </a>
+                </li>
+              </ul>
 
-              <li>
-                <a
-                  className="text-black transition "
-                  href="/"
-                >
-                  Refund
-                </a>
-              </li>
+              <ul className=" text-xs md:text-sm text-center flex justify-center">
 
-              <li>
-                <a
-                  className="text-black transition"
-                  href="/"
-                >
-                 Resend
-                </a>
-              </li>
+                <li>
+                  <a
+                    className="text-black transition "
+                    href="/"
+                  >
+                    Refund
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  className="text-black transition/75"
-                  href="/"
-                >
-                 Supply
-                </a>
-              </li>
+                <li>
+                  <a
+                    className="text-black transition"
+                    href="/"
+                  >
+                    Resend
+                  </a>
+                </li>
+              </ul>
+              <ul className=" text-xs md:text-sm text-center flex justify-center">
 
-              <li>
-                <a
-                  className="text-black transition/75"
-                  href="/"
-                >
-                 Repair
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-black transition/75"
-                  href="/"
-                >
-                 About
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="text-center sm:text-left">
-          {/* <p className="text-lg font-medium text-gray-900 dark:text-black">
+                <li>
+                  <a
+                    className="text-black transition/75"
+                    href="/"
+                  >
+                    Supply
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    className="text-black transition/75"
+                    href="/"
+                  >
+                    Repair
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="text-black transition/75"
+                    href="/"
+                  >
+                    About
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div className="text-center sm:text-left">
+            {/* <p className="text-lg font-medium text-gray-900 dark:text-black">
             About Us
           </p> */}
 
-          <nav aria-label="Footer About Nav" className="mt-8">
-            <ul className="space-y-4 text-sm">
-            <li className="flex justify-center">
-              <a
-                className="flex  text-sm items-center justify-center gap-1.5 sm:justify-start"
-                href="/"
-              >
-              
+            <nav aria-label="Footer About Nav" className="mt-8">
+              <ul className=" text-sm">
+                <li className="flex justify-center">
+                  <a
+                    className="flex  text-sm items-center justify-center gap-1.5 sm:justify-start"
+                    href="/"
+                  >
 
-                <span className="text-black ">
-                  Contact
-                </span>
-              </a>
-            </li>
-            <li className="flex justify-center">
-              <a
-                className="flex items-center justify-center gap-1.5 sm:justify-start"
-                href="/"
-              >
-              Phone:  
-                <span className="text-black ">
-                (555) 555-1234
-                </span>
-              </a>
-            </li>
 
-            <li className="flex justify-center">
-              <a
-                className="flex items-center justify-center gap-1.5 sm:justify-start"
-                href="/"
-              >
-              Email: 
-                <span className="text-black ">info@companyname.com</span>
-              </a>
-            </li>
+                    <span className="text-black ">
+                      Contact
+                    </span>
+                  </a>
+                </li>
+                <li className="flex justify-center">
+                  <a
+                    className="flex items-center justify-center gap-1.5 sm:justify-start"
+                    href="/"
+                  >
+                    Phone:
+                    <span className="text-black ">
+                      (555) 555-1234
+                    </span>
+                  </a>
+                </li>
 
-           
-            </ul>
-          </nav>
+                <li className="flex justify-center">
+                  <a
+                    className="flex items-center justify-center gap-1.5 sm:justify-start"
+                    href="/"
+                  >
+                    Email:
+                    <span className="text-black ">info@companyname.com</span>
+                  </a>
+                </li>
+
+
+              </ul>
+            </nav>
+          </div>
+
+
+
+
+
+
         </div>
 
-       
+        <div className="mt-12 border-t border-gray-100 pt-6 dark:border-gray-800">
+          <div className="text-center sm:flex sm:justify-between sm:text-left">
+            <p className="text-sm text-black dark:text-gray-400">
+              <span className="block sm:inline">All rights reserved.</span>
 
-      
+              <a
+                className="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
+                href="/"
+              >
+                Terms & Conditions
+              </a>
 
-       
+              <span>&middot;</span>
+
+              <a
+                className="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
+                href="/"
+              >
+                Privacy Policy
+              </a>
+            </p>
+
+            <p
+              className="mt-4 text-xs text-gray-600  sm:order-first sm:mt-0"
+            >
+              &copy; 2023 Noble Paragon Pte. Ltd A11 Rights Reserve
+            </p>
+          </div>
+        </div>
       </div>
+    </footer>
 
-    <div className="mt-12 border-t border-gray-100 pt-6 dark:border-gray-800">
-      <div className="text-center sm:flex sm:justify-between sm:text-left">
-        <p className="text-sm text-black dark:text-gray-400">
-          <span className="block sm:inline">All rights reserved.</span>
-
-          <a
-            className="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
-            href="/"
-          >
-            Terms & Conditions
-          </a>
-
-          <span>&middot;</span>
-
-          <a
-            className="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
-            href="/"
-          >
-            Privacy Policy
-          </a>
-        </p>
-
-        <p
-          className="mt-4 text-xs text-gray-600  sm:order-first sm:mt-0"
-        >
-          &copy; 2022 Noble Paragon Pte. Ltd A11 Rights Reserve
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-    );
+  );
 };
 
 export default Footer;

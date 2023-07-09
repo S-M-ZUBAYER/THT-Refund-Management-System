@@ -192,7 +192,7 @@ const Login = () => {
     return (
         <div className="bg-white flex justify-center items-center">
             <div className="shadow-lg lg:w-1/3 my-12 py-10 px-12" >
-                <h2 className="text-2xl text-[#004368] mb-8 font-semibold my-4">Sign In</h2>
+                <h2 className="text-2xl text-[#004368] mb-8 font-semibold my-4 flex justify-center">Sign In</h2>
 
                 {/* <div className="text-2xl" >
                     <button onClick={handleToGoogleLogIn} className="mr-8">
@@ -206,7 +206,7 @@ const Login = () => {
                     </button>
                 </div> */}
 
-                <div className="my-3">or</div>
+              
                 <form onSubmit={handleSubmit}>
                     {/* <label htmlFor="email">Email:</label> */}
                     <input className=" w-full pl-2 text-gray-800 bg-white" placeholder="username or email" type="email" id="email" value={email} onChange={handleEmailChange} />
@@ -215,12 +215,12 @@ const Login = () => {
                     <div className='relative'>
                         <div className='flex items-center'>
                          <input className=" w-full pl-2 text-gray-800 bg-white" placeholder="password" type={show? "text":"password"} id="password" value={password} onChange={handlePasswordChange} />
-                        <button className="absolute right-0 pr-2" onClick={handleToShow}>
+                        {/* <button className="absolute right-0 pr-2" onClick={handleToShow}>
                             {
                                 show?  <BsEyeFill className="text-slate-500"></BsEyeFill> :<RiEyeCloseLine className="text-slate-500"></RiEyeCloseLine>
                             }
                             
-                        </button> 
+                        </button>  */}
                         </div>
                         
                         <hr className=" " ></hr>
@@ -233,15 +233,15 @@ const Login = () => {
                         </button>
                        
                     </div>
-                    <div className="my-2 ">
+                    <div className="my-2 flex justify-center ">
                          <button  className="bg-[#004368]  text-white rounded-md px-32 py-1 text-xl font-semibold " type="submit">{
                            
                             "Sign In"
                          }</button>
                     </div>
                 </form>
-                <div className="text-sm my-3">
-                    Don't have an account? <Link className="font-semibold text-[#65ABFF]" to="/register">Create an account</Link>
+                <div className="text-sm my-3 flex justify-center">
+                    Don't have an account? <Link className="font-semibold text-[#65ABFF]" to="/">Create an account</Link>
                 </div>
 
                 {modalOpen && (
