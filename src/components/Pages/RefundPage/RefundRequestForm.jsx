@@ -279,7 +279,7 @@ const RefundRequestForm = () => {
   />
 </div>
 
-<button type="submit"className="bg-gradient-to-r from-green-500 to-yellow-500 text-white py-2 px-4 rounded">
+<button type="submit"className="bg-gradient-to-r from-green-500 to-yellow-500 text-white font-semibold py-2 px-4 rounded">
   Submit
 </button>
 </div>

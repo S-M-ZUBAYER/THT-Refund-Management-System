@@ -1,8 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
+ 
 const RefundProductList = ({ refundProducts }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
+ 
+
+
+
+  // const fetchData = async () => {
+  //   try {
+  //     const url = "https://api.daraz.com.bd/category/tree/get"; // Replace <your_url_here> with the actual URL from your cURL request
+  
+  //     const requestData = {
+  //       access_token: '37c66819338b4562e17675b8c5c4dbd0',
+  //       sign_method: 'sha256',
+  //       sign: 'D13F2A03BE94D9AAE9F933FFA7B13E0A5AD84A3DAEBC62A458A3C382EC2E91EC',
+  //       app_key: '1234567',
+  //       timestamp: '1688979906470'
+  //     };
+  
+  //     const response = await axios.post(url, requestData, {
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8'
+  //       }
+  //     });
+  
+  //     const responseData = response.data;
+  //     console.log(responseData);
+  //     // Process the response data as per your requirements
+  //   } catch (error) {
+  //     console.error('Error retrieving category tree:', error);
+  //   }
+  // };
+  
+  // fetchData();
+  
+
+     
+
+
 
   const deleteRefundProduct = (product) => {
     // Logic to delete the refund product

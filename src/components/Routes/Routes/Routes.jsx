@@ -9,6 +9,7 @@ import Repair from "../../Pages/RepairPage/Repair";
 import About from "../../Pages/AboutPage/About";
 import Login from "../../Pages/LogInPage/LogIn";
 import FullLogInPage from "../../Pages/LogInPage/FullLogInPage";
+import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 
 
 
@@ -29,31 +30,31 @@ export const  routes=createBrowserRouter([
     },
     {
         path:"/refund",
-        element:<Refund></Refund>
+        element:<PrivateRoute><Refund></Refund></PrivateRoute>
     },
     {
         path:"/resend",
-        element:<Resend></Resend>
+        element:<PrivateRoute><Resend></Resend></PrivateRoute>
     },
     {
         path:"/supply",
-        element:<Supply></Supply>
+        element:<PrivateRoute><Supply></Supply></PrivateRoute>
     },
     {
         path:"/repair",
-        element:<Repair></Repair>
+        element:<PrivateRoute><Repair></Repair></PrivateRoute>  
     },
     {
         path:"/about",
         element:<About></About>
-    }
- ]
-    
-},
+    },
 
     {
         path:"/login",
         element:<FullLogInPage></FullLogInPage>
     }
+ ]
+    
+}
 
 ])

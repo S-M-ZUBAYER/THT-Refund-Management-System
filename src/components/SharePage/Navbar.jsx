@@ -12,14 +12,38 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/UserContext';
+import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [logo, setLogo] = useState(false)
+const [loading,setLoading]=useState(false);
+
+
+const {user,setUser,logInPage}=useContext(AuthContext);
+
   const handleNav = () => {
     setNav(!nav);
     setLogo(!logo)
   };
+
+  const handleToLogOut = () => {
+    try {
+      setLoading(true);
+      setUser(null);
+      localStorage.removeItem('RFuser');
+      toast.success("Logout successfully");
+      setLoading(false);
+      // Navigate('/login')
+    }
+    catch (err) {
+      toast.error(err)
+    }
+
+
+  }
+
 
   return (
     <div className='flex w-full justify-between items-center h-20 px-4 absolute z-10 text-white'>
@@ -36,8 +60,7 @@ const Navbar = () => {
         <li><Link to='about' className="hover:cursor-pointer">About</Link> </li>
       </ul>
       <div className='hidden md:flex'>
-        <BiSearch className='' size={20} />
-        <BsPerson size={20} />
+      <p onClick={handleToLogOut} className="hover:cursor-pointer">LogOut</p>
       </div>
 
       {/* Hamburger */}
@@ -49,12 +72,13 @@ const Navbar = () => {
       <div onClick={handleNav} className={nav ? 'absolute text-black left-0 top-0 w-full bg-gray-100/90 px-4 py-7 flex flex-col' : 'absolute left-[-100%]'}>
         <ul>
           <h1 className="hover:cursor-pointer">Grozziie</h1>
-          <li className='border-b hover:cursor-pointer'>Home</li>
-          <li className='border-b hover:cursor-pointer'>Refund</li>
-          <li className='border-b hover:cursor-pointer'>Resend</li>
-          <li className='border-b hover:cursor-pointer'>Supply</li>
-          <li className='border-b hover:cursor-pointer'>Repair</li>
-          <li className='border-b hover:cursor-pointer'>About</li>
+          <li><Link to='home' className='border-b hover:cursor-pointer'>Home</Link></li>
+          <li><Link to='refund' className='border-b hover:cursor-pointer'>Refund</Link></li>
+          <li><Link to='resend' className='border-b hover:cursor-pointer'>Resend</Link></li>
+          <li><Link to='repair' className='border-b hover:cursor-pointer'>Supply</Link></li>
+          <li><Link to='supply' className='border-b hover:cursor-pointer'>Repair</Link></li>
+          <li><Link to='about' className='border-b hover:cursor-pointer'>About</Link></li>
+          <li onClick={handleToLogOut} className='border-b hover:cursor-pointer'>LogOut</li>
           <div className='flex flex-col '>
             <button className='hover:cursor-pointer font-semibold'>Account</button>
           </div>

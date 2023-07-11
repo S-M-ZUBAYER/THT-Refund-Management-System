@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Hero from '../../SharePage/Hero';
 
 const Repair = () => {
   const [peopleList, setPeopleList] = useState([
@@ -34,6 +35,7 @@ const Repair = () => {
   };
 
   return (
+  
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Show the list of all users</h1>
       <ul className="list-disc pl-4">

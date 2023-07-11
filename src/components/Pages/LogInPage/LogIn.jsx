@@ -1,25 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { GrFacebook, GrGoogle } from "react-icons/gr";
 import { BsEyeFill, BsWechat } from "react-icons/bs";
 import { RiEyeCloseLine } from "react-icons/ri";
 // import { BsEyeFill } from "react-icons/bs";
 import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
-// import { AuthContext } from '../../../context/UserContext';
-// import googleLogo from "../../../Assets/Images/Icons/gmailLogo.jpg"
-// import facebookLogo from "../../../Assets/Images/Icons/facebookLogo.png"
-// import wechatLogo from "../../../Assets/Images/Icons/wechatLogo.png"
-// import { AllProductContext } from '../../../context/ProductContext';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../context/UserContext';
 // import BtnSpinner from '../../Shared/Loading/BtnSpinner';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const[Loading,setLoading]=useState(false);
     const location=useLocation();
     const navigate=useNavigate();
     // const {setLanguage}=useContext(AllProductContext);
-//    const {user, setUser}=useContext(AuthContext);
+   const {user, setUser}=useContext(AuthContext);
 
    const [confirmPassword, setConfirmPassword] = useState('');
    const [errorMessage, setErrorMessage] = useState('');
@@ -28,10 +25,24 @@ const Login = () => {
 
     const [show, setShow]=useState(false)
 
-    // const {signIn,signInWithGoogle,signInWithFacebook,resetPassword, loading,setLoading}=useContext(AuthContext);
 
     const from=location?.state?.from?.pathname || "/";
 
+
+
+    const handleClick = () => {
+      const registerElement = document.getElementById('register');
+      console.log(registerElement)
+      if (registerElement) {
+        // Access the element here
+        console.log(registerElement);
+        registerElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+    
+    useEffect(() => {
+      handleClick();
+    }, []);
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -47,10 +58,10 @@ const Login = () => {
             toast.error("please input all the information properly")
             return;
         }
-        // setLoading(true);
+        setLoading(true);
         const form=event.target;
         // handle form submission logic here
-        fetch('https://grozziie.zjweiting.com:8033/tht/login', {
+        fetch('http://localhost:5000/tht/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -71,17 +82,17 @@ const Login = () => {
             //     }
                 if(data?.message==="Wrong email/password combination!") {
                     toast.error(data.message);
-                    // setLoading(false);
+                    setLoading(false);
                 }
                 else if(data?.message==="User doesn't exist") {
                     toast.error(data.message);
-                    // setLoading(false);
+                    setLoading(false);
                 }
                 else{
                   console.log(data)
-                //   setUser(data[0])
-                localStorage.setItem('user', JSON.stringify(data[0]));
-            // setLoading(false);
+                  setUser(data[0])
+                localStorage.setItem('RFuser', JSON.stringify(data[0]));
+            setLoading(false);
             navigate(from,{replace:true})
             form.reset();
                     toast.success('User Login Successfully');
@@ -92,18 +103,11 @@ const Login = () => {
       
 
 
-        // signIn(email,password)
-        // .then(result=>{
-        //     const user=result.user;
-        //     setLoading(false);
-        //     navigate(from,{replace:true})
-        //     form.reset();
-           
-        // })
+       
         .catch(err=>{
-            // toast.error("Invalid User Name Or Password")
+            toast.error("Invalid User Name Or Password")
             console.log(err);
-            // setLoading(false);
+            setLoading(false);
         })
     };
 
@@ -148,7 +152,7 @@ const Login = () => {
         }
     
         // Call the API endpoint to reset password with the email
-        fetch('https://grozziie.zjweiting.com:8033/tht/reset-password', {
+        fetch('http://localhost:5000/tht/reset-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -214,13 +218,13 @@ const Login = () => {
                     {/* <label htmlFor="password">Password:</label> */}
                     <div className='relative'>
                         <div className='flex items-center'>
-                         <input className=" w-full pl-2 text-gray-800 bg-white" placeholder="password" type={show? "text":"password"} id="password" value={password} onChange={handlePasswordChange} />
-                        {/* <button className="absolute right-0 pr-2" onClick={handleToShow}>
+                         <input className=" w-full pl-2 text-gray-800 bg-white" placeholder="password" type={show? "text":"password"} typ id="password" value={password} onChange={handlePasswordChange} />
+                        <button className="absolute right-0 pr-2 bg-white" onClick={handleToShow}>
                             {
                                 show?  <BsEyeFill className="text-slate-500"></BsEyeFill> :<RiEyeCloseLine className="text-slate-500"></RiEyeCloseLine>
                             }
                             
-                        </button>  */}
+                        </button> 
                         </div>
                         
                         <hr className=" " ></hr>
@@ -241,7 +245,7 @@ const Login = () => {
                     </div>
                 </form>
                 <div className="text-sm my-3 flex justify-center">
-                    Don't have an account? <Link className="font-semibold text-[#65ABFF]" to="/">Create an account</Link>
+                    Don't have an account? <Link onClick={handleClick} className="font-semibold text-[#65ABFF]" to="/">Create an account</Link>
                 </div>
 
                 {modalOpen && (
