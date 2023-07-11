@@ -8,7 +8,8 @@ export const AuthContext = createContext();
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [logInPage,setLogInPage]=useState("")
+  const [logInPage,setLogInPage]=useState("");
+  const [allRefundRequest, setAllRefundRequest] = useState([])
 
   useEffect(() => {
     const storedUser = localStorage.getItem('RFuser');
@@ -30,7 +31,9 @@ const UserContext = ({ children }) => {
     loading,
     setLoading,
     logInPage,
-    setLogInPage
+    setLogInPage,
+    allRefundRequest, 
+    setAllRefundRequest
   };
 
   return (

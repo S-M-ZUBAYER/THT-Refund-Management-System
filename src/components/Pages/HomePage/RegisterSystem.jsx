@@ -3,6 +3,8 @@
 import React, { useCallback, useContext, useRef, useState } from 'react';
 import { IoMdLogIn } from 'react-icons/io';
 import { BiReset } from 'react-icons/bi';
+import { BsEyeFill} from "react-icons/bs";
+import { RiEyeCloseLine } from "react-icons/ri";
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,6 +22,11 @@ const RegisterSystem = () => {
   const [loading, setLoading] = useState(false)
   const [lengthError, setLengthError] = useState(null);
   const [matchError, setMatchError] = useState(null);
+  
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+
 const {user, setUser}=useContext(AuthContext);
 
 
@@ -28,6 +35,16 @@ const {user, setUser}=useContext(AuthContext);
 
   //use this function to navigate the route after registration
   const navigate = useNavigate();
+
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+};
+
+const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
+
+};
 
   // create this function to upload image
   const handleFileUpload = useCallback(async (acceptedFiles) => {
@@ -175,7 +192,15 @@ const {user, setUser}=useContext(AuthContext);
         setLoading(false);
       });
   };
-
+//create this function to show the password toggle
+const handleToShowPassword = (event) => {
+  event.preventDefault();
+  setShowPassword(!showPassword)
+};
+const handleToShowConfirmPassword = (event) => {
+  event.preventDefault();
+  setShowConfirmPassword(!showConfirmPassword)
+};
 
 
 
@@ -233,7 +258,7 @@ const {user, setUser}=useContext(AuthContext);
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className='flex justify-between items-center my-2'>
+          <div className='flex justify-between items-center my-2 relative'>
             <label className='mr-2'>Password</label>
             <input
               className='border rounded-md p-1 w-9/12'
@@ -241,8 +266,14 @@ const {user, setUser}=useContext(AuthContext);
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+          {/* <button className="absolute right-0 pr-2" type={showConfirmPassword ? "text" : "password"} onClick={handleToShowPassword}>
+                                    {
+                                        showPassword ? <BsEyeFill className="text-slate-500"></BsEyeFill> : <RiEyeCloseLine className="text-slate-500"></RiEyeCloseLine>
+                                    }
+
+                                </button> */}
           </div>
-          <div className='flex justify-between items-center my-2'>
+          <div className='flex justify-between items-center my-2 relative'>
             <label className='text-sm'>Confirm Password</label>
             <input
               className='border rounded-md p-1 w-9/12'
@@ -250,6 +281,12 @@ const {user, setUser}=useContext(AuthContext);
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            {/* <button className="absolute right-0 pr-2" onClick={handleToShowConfirmPassword}>
+                                    {
+                                        showConfirmPassword ? <BsEyeFill className="text-slate-500"></BsEyeFill> : <RiEyeCloseLine className="text-slate-500"></RiEyeCloseLine>
+                                    }
+
+                                </button> */}
           </div>
           <div className='flex justify-between items-center my-2'>
             <label className='mr-2'>Name</label>

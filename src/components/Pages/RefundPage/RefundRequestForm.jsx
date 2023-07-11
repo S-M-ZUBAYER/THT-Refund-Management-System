@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../context/UserContext';
 
 const RefundRequestForm = () => {
-  const [orderNumber, setOrderNumber] = useState('');
   const [orderTime, setOrderTime] = useState(new Date().toLocaleTimeString());
   const [shopName, setShopName] = useState('');
-  const [customerUsername, setCustomerUsername] = useState('');
+  const [customerUserName, setCustomerUserName] = useState('');
   const [customerOrderNumber, setCustomerOrderNumber] = useState('');
   const [orderDate, setOrderDate] = useState('');
   const [orderAmount, setOrderAmount] = useState('');
@@ -21,15 +22,17 @@ const RefundRequestForm = () => {
   const [applicantName, setApplicantName] = useState('');
   const [applicationDate, setApplicationDate] = useState(new Date().toLocaleDateString());
 
+
+const {allRefundRequest, setAllRefundRequest}=useContext(AuthContext);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     // Form data object
     const formData = {
-      orderNumber,
-      orderTime,
+      orderTime:orderTime,
       shopName,
-      customerUsername,
+      customerUserName,
       customerOrderNumber,
       orderDate,
       orderAmount,
@@ -44,11 +47,51 @@ const RefundRequestForm = () => {
       customerBankSwift,
       remarks,
       applicantName,
-      applicationDate,
+      applicationDate:applicationDate,
     };
 
     console.log(formData);
-    // Add your logic for form submission here
+    fetch('http://localhost:5000/tht/refundRequest/add', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formData),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Data stored successfully:', data);
+    toast.success("Data stored successfully");
+    setAllRefundRequest([...allRefundRequest, formData]);
+
+
+    setOrderTime("");
+    setShopName("");
+    setCustomerUserName("");
+    setCustomerOrderNumber("");
+    setOrderDate("");
+    setOrderAmount("");
+    setCustomerReturnTrackingNumber("");
+    setRefundReason("");
+    setOtherReason("");
+    setRefundAmount("");
+    setCustomerReceivingAmount("");
+    setCustomerReceivingAccount("");
+    setCustomerBankName("");
+    setCustomerBankAccountName("");
+    setCustomerBankSwift("");
+    setRemarks("");
+    setApplicantName("");
+    setApplicationDate("");
+
+    console.log(allRefundRequest)
+
+    
+  })
+  .catch((error) => {
+    toast.error("Error occurred during the request")
+    console.error('Error occurred during the request:', error);
+  });
   };
 
   return (
@@ -56,18 +99,8 @@ const RefundRequestForm = () => {
       <h2 className="text-xl font-semibold mb-8 py-2 bg-cyan-200">Refund Request Form</h2>
 
       <div className="grid grid-cols-1">
-        <div className="mb-4 flex justify-between items-center">
-          <label htmlFor="orderNumber">Order Number:</label>
-          <input
-            type="text"
-            id="orderNumber"
-            className="border rounded-md p-2 w-9/12"
-            value={orderNumber}
-            onChange={(e) => setOrderNumber(e.target.value)}
-          />
-        </div>
 
-        <div className="mb-4 flex justify-between items-center">
+        {/* <div className="mb-4 flex justify-between items-center">
           <label htmlFor="orderTime">Order Time:</label>
           <input
             type="text"
@@ -77,7 +110,7 @@ const RefundRequestForm = () => {
             onChange={(e) => setOrderTime(e.target.value)}
             readOnly
           />
-        </div>
+        </div> */}
 
         <div className="mb-4 flex justify-between items-center">
   <label htmlFor="shopName">Shop Name:</label>
@@ -102,8 +135,8 @@ const RefundRequestForm = () => {
             type="text"
             id="customerUsername"
             className="border rounded-md p-2 w-9/12"
-            value={customerUsername}
-            onChange={(e) => setCustomerUsername(e.target.value)}
+            value={customerUserName}
+            onChange={(e) => setCustomerUserName(e.target.value)}
           />
         </div>
 
@@ -267,7 +300,7 @@ const RefundRequestForm = () => {
   />
 </div>
 
-<div className="mb-4 flex justify-between items-center">
+{/* <div className="mb-4 flex justify-between items-center">
   <label htmlFor="applicationDate">Application Date:</label>
   <input
     type="text"
@@ -277,7 +310,7 @@ const RefundRequestForm = () => {
     onChange={(e) => setApplicationDate(e.target.value)}
     readOnly
   />
-</div>
+</div> */}
 
 <button type="submit"className="bg-gradient-to-r from-green-500 to-yellow-500 text-white font-semibold py-2 px-4 rounded">
   Submit
