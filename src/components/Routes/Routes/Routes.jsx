@@ -10,6 +10,7 @@ import About from "../../Pages/AboutPage/About";
 import Login from "../../Pages/LogInPage/LogIn";
 import FullLogInPage from "../../Pages/LogInPage/FullLogInPage";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
+import Admin from "../../Pages/AdminPage/Admin";
 
 
 
@@ -43,6 +44,10 @@ export const  routes=createBrowserRouter([
     {
         path:"/repair",
         element:<PrivateRoute><Repair></Repair></PrivateRoute>  
+    },
+    {
+        path:"/admin",
+        element:<PrivateRoute><Admin></Admin></PrivateRoute>  
     },
     {
         path:"/about",

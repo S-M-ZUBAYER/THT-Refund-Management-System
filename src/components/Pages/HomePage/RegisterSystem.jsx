@@ -17,6 +17,7 @@ const RegisterSystem = () => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [role, setRole] = useState('');
+  const [language, setLanguage] = useState('');
   const [country, setCountry] = useState('');
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false)
@@ -89,7 +90,7 @@ const handleConfirmPasswordChange = (event) => {
   const handleRegister = (event) => {
     event.preventDefault();
 
-    if (name === "" || image === "" || phoneNumber === "" || country === "" || email === "" || role === "") {
+    if (name === "" || image === "" || phoneNumber === "" || language === "" || country === "" || email === "" || role === "") {
       toast.error("Please provide all the information");
       return;
     }
@@ -100,7 +101,8 @@ const handleConfirmPasswordChange = (event) => {
       phoneNumber,
       role,
       country,
-      image,
+      language,
+      image
     };
 
     const form = event.target;
@@ -146,9 +148,10 @@ const handleConfirmPasswordChange = (event) => {
               name,
               phoneNumber,
               role,
+              language,
               country,
               image,
-              isAdmin: "false",
+              isAdmin: "false"
             }),
           })
             .then((res) => res.json())
@@ -166,6 +169,7 @@ const handleConfirmPasswordChange = (event) => {
                 setName("");
                 setPhoneNumber("");
                 setRole("");
+                setLanguage("");
                 setCountry("");
                 setImage(null);
 
@@ -320,6 +324,15 @@ const handleToShowConfirmPassword = (event) => {
               <option>Finance</option>
               <option>Supplier</option>
             </select>
+          </div>
+          <div className='flex justify-between items-center my-2'>
+            <label className='mr-2'>Language</label>
+            <input
+              className='border rounded-md p-1 w-9/12'
+              type='text'
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            />
           </div>
           <div className='flex justify-between items-center my-2'>
             <label className='mr-2'>Country</label>

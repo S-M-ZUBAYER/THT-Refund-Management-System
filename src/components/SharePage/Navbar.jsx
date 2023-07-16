@@ -22,6 +22,7 @@ const [loading,setLoading]=useState(false);
 
 
 const {user,setUser,logInPage}=useContext(AuthContext);
+console.log(user?.admin)
 
   const handleNav = () => {
     setNav(!nav);
@@ -57,6 +58,10 @@ const {user,setUser,logInPage}=useContext(AuthContext);
         <li><Link to='resend' className="hover:cursor-pointer">Resend</Link> </li>
         <li><Link to='supply' className="hover:cursor-pointer">Supply</Link> </li>
         <li><Link to='repair' className="hover:cursor-pointer">Repair</Link> </li>
+        {
+          user?.admin==="true"? <li><Link to='admin' className="hover:cursor-pointer">Admin</Link> </li>:""
+        }
+        
         <li><Link to='about' className="hover:cursor-pointer">About</Link> </li>
       </ul>
       <div className='hidden md:flex'>
@@ -77,6 +82,7 @@ const {user,setUser,logInPage}=useContext(AuthContext);
           <li><Link to='resend' className='border-b hover:cursor-pointer'>Resend</Link></li>
           <li><Link to='repair' className='border-b hover:cursor-pointer'>Supply</Link></li>
           <li><Link to='supply' className='border-b hover:cursor-pointer'>Repair</Link></li>
+          <li><Link to='admin' className='border-b hover:cursor-pointer'>Admin</Link></li>
           <li><Link to='about' className='border-b hover:cursor-pointer'>About</Link></li>
           <li onClick={handleToLogOut} className='border-b hover:cursor-pointer'>LogOut</li>
           <div className='flex flex-col '>
