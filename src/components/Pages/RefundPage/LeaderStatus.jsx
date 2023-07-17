@@ -35,12 +35,12 @@ const LeaderStatus = ({ refundProducts }) => {
    );
    
 
-    const handleOptionChange = (special) => {
-        console.log(special)
-        setEditingRequest({ ...editingRequest, special: !special })
-    };
+    // const handleOptionChange = (special) => {
+    //     console.log(special)
+    //     setEditingRequest({ ...editingRequest, special: !special })
+    // };
 
-    const { allRefundRequest, setAllRefundRequest } = useContext(AuthContext);
+    
 
     const fetchData = async () => {
         try {
@@ -48,8 +48,21 @@ const LeaderStatus = ({ refundProducts }) => {
             const response = await axios.get('http://localhost:5000/tht/LeaderStatusRequest');
             const data = response.data;
             console.log(data); // You can process the data as needed
-            setAllLeaderRequest(data.filter(item => !item.special));
-            setAllSpecialRequest(data.filter(item => item.special));
+            setAllLeaderRequest(data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error occurred during the request:', error);
+            setLoading(false);
+        }
+    };
+
+    const fetchSpecialData = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get('http://localhost:5000/tht/LeaderStatusSpecialRequest');
+            const data = response.data;
+            console.log(data); // You can process the data as needed
+            setAllSpecialRequest(data)
             setLoading(false);
         } catch (error) {
             console.error('Error occurred during the request:', error);
@@ -59,6 +72,7 @@ const LeaderStatus = ({ refundProducts }) => {
 
     useEffect(() => {
         fetchData();
+        fetchSpecialData();
     }, []);
 
     const deleteRequest = async (orderNumber) => {
@@ -431,13 +445,13 @@ const LeaderStatus = ({ refundProducts }) => {
                                     className="mb-2 px-4 py-2 border border-gray-300 bg-white rounded-md w-9/12"
                                 /> </div>
 
-                            <div className="flex items-center justify-end space-x-2 my-3 hover:cursor-pointer">
+                            {/* <div className="flex items-center justify-end space-x-2 my-3 hover:cursor-pointer">
                                 <input
                                     type="radio"
                                     id="specialOption"
                                     checked={editingRequest?.special}
                                     onClick={() => handleOptionChange(editingRequest?.special)}
-                                    className={`appearance-none hover:cursor-pointer h-4 w-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 ${editingRequest?.special ? 'bg-black' : ''
+                                    className={`appearance-none hover:cursor-pointer h-4 w-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 ${editingRequest?.special==="1" ? 'bg-black' : ''
                                         }`}
                                 />
                                 <label
@@ -446,7 +460,7 @@ const LeaderStatus = ({ refundProducts }) => {
                                 >
                                     Special
                                 </label>
-                            </div>
+                            </div> */}
 
                             {/* Add other input fields for the remaining form data */}
                             {/* <input ... /> */}

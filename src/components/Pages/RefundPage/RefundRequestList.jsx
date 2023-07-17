@@ -24,6 +24,7 @@ const RefundProductList = ({ refundProducts }) => {
       .then((response) => response.json())
       .then((data) => {
         setAllRefundRequest(data);
+        console.log(data)
       })
       .catch((error) => {
         console.error('Error occurred during the request:', error);
@@ -263,7 +264,7 @@ const RefundProductList = ({ refundProducts }) => {
                   id="specialOption"
                   checked={editingRequest?.special}
                   onClick={()=>handleOptionChange(editingRequest?.special)}
-                  className={`appearance-none hover:cursor-pointer h-4 w-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 ${editingRequest?.special ? 'bg-black' : ''
+                  className={`appearance-none hover:cursor-pointer h-4 w-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 ${editingRequest?.special==="1" ? 'bg-black' : ''
                     }`}
                 />
                 <label

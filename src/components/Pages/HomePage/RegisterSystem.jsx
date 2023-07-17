@@ -3,7 +3,7 @@
 import React, { useCallback, useContext, useRef, useState } from 'react';
 import { IoMdLogIn } from 'react-icons/io';
 import { BiReset } from 'react-icons/bi';
-import { BsEyeFill} from "react-icons/bs";
+import { BsEyeFill } from "react-icons/bs";
 import { RiEyeCloseLine } from "react-icons/ri";
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
@@ -23,12 +23,12 @@ const RegisterSystem = () => {
   const [loading, setLoading] = useState(false)
   const [lengthError, setLengthError] = useState(null);
   const [matchError, setMatchError] = useState(null);
-  
+
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
 
-const {user, setUser}=useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
 
   const registerRef = useRef(null);
@@ -40,12 +40,12 @@ const {user, setUser}=useContext(AuthContext);
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-};
+  };
 
-const handleConfirmPasswordChange = (event) => {
+  const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
 
-};
+  };
 
   // create this function to upload image
   const handleFileUpload = useCallback(async (acceptedFiles) => {
@@ -196,15 +196,15 @@ const handleConfirmPasswordChange = (event) => {
         setLoading(false);
       });
   };
-//create this function to show the password toggle
-const handleToShowPassword = (event) => {
-  event.preventDefault();
-  setShowPassword(!showPassword)
-};
-const handleToShowConfirmPassword = (event) => {
-  event.preventDefault();
-  setShowConfirmPassword(!showConfirmPassword)
-};
+  //create this function to show the password toggle
+  const handleToShowPassword = (event) => {
+    event.preventDefault();
+    setShowPassword(!showPassword)
+  };
+  const handleToShowConfirmPassword = (event) => {
+    event.preventDefault();
+    setShowConfirmPassword(!showConfirmPassword)
+  };
 
 
 
@@ -225,13 +225,13 @@ const handleToShowConfirmPassword = (event) => {
         <div className='grid sm:grid-cols-2 gap-8 py-4'>
           <div className='flex flex-col lg:flex-row items-center text-center'>
             <Link to="/login">
-            <button>
-              <IoMdLogIn className="text-green-300" size={50} />
-            </button>
+              <button>
+                <IoMdLogIn className="text-green-300" size={50} />
+              </button>
             </Link>
-            
+
             <div>
-            <Link to="/login"> <h3 className='py-2'>Log In</h3> </Link>
+              <Link to="/login"> <h3 className='py-2'>Log In</h3> </Link>
               <p className='py-1'>If You Already Have An Account Please Log In</p>
             </div>
           </div>
@@ -270,7 +270,7 @@ const handleToShowConfirmPassword = (event) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          {/* <button className="absolute right-0 pr-2" type={showConfirmPassword ? "text" : "password"} onClick={handleToShowPassword}>
+            {/* <button className="absolute right-0 pr-2" type={showConfirmPassword ? "text" : "password"} onClick={handleToShowPassword}>
                                     {
                                         showPassword ? <BsEyeFill className="text-slate-500"></BsEyeFill> : <RiEyeCloseLine className="text-slate-500"></RiEyeCloseLine>
                                     }
@@ -321,27 +321,44 @@ const handleToShowConfirmPassword = (event) => {
               <option>Customer Service</option>
               <option>Customer Service Leader</option>
               <option>Warehouse</option>
+              <option>Warehouse Manager</option>
               <option>Finance</option>
               <option>Supplier</option>
             </select>
           </div>
+    
           <div className='flex justify-between items-center my-2'>
             <label className='mr-2'>Language</label>
-            <input
+            <select
               className='border rounded-md p-1 w-9/12'
-              type='text'
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-            />
+            >
+              <option >Select</option>
+              <option >Chinese</option>
+              <option >Bengali</option>
+              <option >Indonesian</option>
+              <option >Thai</option>
+              <option >English</option>
+              <option >Malay</option>
+            </select>
           </div>
+
           <div className='flex justify-between items-center my-2'>
             <label className='mr-2'>Country</label>
-            <input
+            <select
               className='border rounded-md p-1 w-9/12'
-              type='text'
               value={country}
               onChange={(e) => setCountry(e.target.value)}
-            />
+            >
+              <option>Select</option>
+              <option>China</option>
+              <option>Bangladesh</option>
+              <option>Indonesia</option>
+              <option>Thailand</option>
+              <option>Singapore</option>
+              <option>Malaysia</option>
+            </select>
           </div>
           <div className='flex justify-between items-center my-2'>
             <label className='mr-2'>Image</label>

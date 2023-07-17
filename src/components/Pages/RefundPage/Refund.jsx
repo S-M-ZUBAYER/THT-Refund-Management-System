@@ -5,6 +5,7 @@ import Hero from '../../SharePage/Hero';
 import Warehouse from './Warehouse';
 import { AuthContext } from '../../../context/UserContext';
 import LeaderStatus from './LeaderStatus';
+import WarehouseManager from './WarehouseManager';
 
 const Refund = () => {
 
@@ -31,7 +32,7 @@ const Refund = () => {
 
             {
                 user?.role === "Warehouse" && <> <div className="mt-16 mb-5">
-                    <h1>Requests Need To Approved By Warehouse Manger</h1>
+                    <h1>Requests Need To Approved By Warehouse Man</h1>
                     <p className='py-4'>These are all the list of refund request at these moment. Here you can check and update the refund request information.And then please approved their refund request.  </p>
                 </div>
 
@@ -45,6 +46,15 @@ const Refund = () => {
                 </div>
 
                     <LeaderStatus></LeaderStatus> </>
+            }
+
+            {
+                user?.role === "Warehouse Manager" && <> <div className="mt-16 mb-5">
+                    <h1>Requests Need To Approved By Warehouse Manager</h1>
+                    <p className='py-4'>These are all the list of refund request at these moment. Here you can check and update the refund request information.And then please approved their refund request.  </p>
+                </div>
+
+                    <WarehouseManager></WarehouseManager> </>
             }
 
 

@@ -88,6 +88,7 @@ const RefundRequestForm = () => {
       customerServiceStatus: "true",
       customerServiceLeaderStatus: "false",
       warehouseStatus: "false",
+      warehouseManagerStatus: "false",
       financeStatus: "false",
       supplierStatus: "false",
       special

@@ -11,6 +11,7 @@ import Login from "../../Pages/LogInPage/LogIn";
 import FullLogInPage from "../../Pages/LogInPage/FullLogInPage";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import Admin from "../../Pages/AdminPage/Admin";
+import DetailsLayout from "../../Pages/RefundPage/DetailsLayout";
 
 
 
@@ -32,6 +33,10 @@ export const  routes=createBrowserRouter([
     {
         path:"/refund",
         element:<PrivateRoute><Refund></Refund></PrivateRoute>
+    },
+    {
+        path:"/details/:orderNumber",
+        element:<PrivateRoute><DetailsLayout></DetailsLayout></PrivateRoute>,
     },
     {
         path:"/resend",
