@@ -31,11 +31,11 @@ const RefundProductList = ({ refundProducts }) => {
       });
   }, []);
 
-  const deleteUser = async (orderNumber) => {
+  const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/tht/refundRequest/delete/${orderNumber}`);
+      await axios.delete(`http://localhost:5000/tht/refundRequest/delete/${id}`);
       toast.success('User deleted successfully');
-      setAllRefundRequest(allRefundRequest.filter((request) => request?.orderNumber !== orderNumber));
+      setAllRefundRequest(allRefundRequest.filter((request) => request?.id !== id));
     } catch (error) {
       console.error('Error deleting user:', error);
       toast.error('Failed to delete user');
@@ -105,7 +105,7 @@ const RefundProductList = ({ refundProducts }) => {
                   </btn>
                 </td>
                 <td>
-                  <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteUser(request?.orderNumber)}>
+                  <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteUser(request?.id)}>
                     <RiDeleteBin7Line></RiDeleteBin7Line>
                   </btn>
                 </td>
@@ -258,22 +258,7 @@ const RefundProductList = ({ refundProducts }) => {
                   onChange={(e) => setEditingRequest({ ...editingRequest, otherReason: e.target.value })}
                   className="mb-2 px-4 py-2 border border-gray-300 bg-white rounded-md w-9/12"
                 /> </div>
-              <div className="flex items-center justify-end space-x-2 my-3 hover:cursor-pointer">
-                <input
-                  type="radio"
-                  id="specialOption"
-                  checked={editingRequest?.special}
-                  onClick={()=>handleOptionChange(editingRequest?.special)}
-                  className={`appearance-none hover:cursor-pointer h-4 w-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 ${editingRequest?.special==="1" ? 'bg-black' : ''
-                    }`}
-                />
-                <label
-                  htmlFor="specialOption"
-                  className={`px-2 py-1 rounded-md hover:cursor-pointer `}
-                >
-                  Special
-                </label>
-              </div>
+              
 
               {/* Add other input fields for the remaining form data */}
               {/* <input ... /> */}

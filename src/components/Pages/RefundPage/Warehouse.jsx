@@ -6,14 +6,11 @@ import { RiDeleteBin7Line } from 'react-icons/ri';
 // Import the correct DisplaySpinner component based on its actual location
 import DisplaySpinner from '../../Loading/DisplaySpinner';
 import { toast } from 'react-hot-toast';
-import { AuthContext } from '../../../context/UserContext';
 
-const Warehouse = ({ refundProducts }) => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+const Warehouse = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [editingRequest, setEditingRequest] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [allWarehouseRequest, setAllWarehouseRequest] = useState([]);
   const [allWarehouseSpecialRequest, setAllWarehouseSpecialRequest] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -71,11 +68,12 @@ const Warehouse = ({ refundProducts }) => {
     fetchSpecialData();
   }, []);
 
-  const deleteRequest = async (orderNumber) => {
+  const deleteRequest = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/tht/refundRequest/delete/${orderNumber}`);
+      await axios.delete(`http://localhost:5000/tht/refundRequest/delete/${id}`);
       toast.success('User deleted successfully');
-      setAllWarehouseRequest((prevRequests) => prevRequests.filter((request) => request?.orderNumber !== orderNumber));
+      setAllWarehouseRequest((prevRequests) => prevRequests.filter((request) => request?.id !==id));
+      setAllWarehouseSpecialRequest((prevRequests) => prevRequests.filter((request) => request?.id !==id));
     } catch (error) {
       console.error('Error deleting user:', error);
       toast.error('Failed to delete user');
@@ -98,47 +96,40 @@ const Warehouse = ({ refundProducts }) => {
     }
   };
 
-  // const handleOptionChange = (special) => {
-  //   setEditingRequest({ ...editingRequest, special: !special });
-  //   console.log(editingRequest?.special);
-  // };
-
 
 
   const handleImageChange = (e) => {
-    setSelectedImages(e.target.files);
+    setSelectedImages(Array.from(e.target.files));
   };
 
 
-  // const updateWarehouseStatus = async (orderNumber) => {
-  //   try {
-  //     const response = await axios.put(
-  //       `http://localhost:5000/tht/refundRequest/updateWarehouseStatus/${orderNumber}`
-  //     );
-
-  //     if (response.status === 200) {
-  //       setAllWarehouseRequest((prevRequests) =>
-  //         prevRequests.map((request) => {
-  //           if (request.orderNumber === orderNumber) {
-  //             return { ...request, warehouseStatus: true };
-  //           }
-  //           return request;
-  //         })
-  //       );
-
-  //       toast.success('Warehouse status updated successfully');
-  //     } else {
-  //       toast.error('Failed to update warehouse status');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating warehouse status:', error);
-  //     toast.error('Failed to update warehouse status');
-  //   }
+  // const handleImageChange = (e) => {
+  //   setSelectedImages(e.target.files);
   // };
 
+  const handleImageUpload = async () => {
+    try {
+      const formData = new FormData();
+      selectedImages.forEach((image) => formData.append('images', image));
 
+      await axios.post('/api/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      // Handle success, display a message or do any other required actions
+      console.log('Images uploaded successfully!');
+    } catch (error) {
+      // Handle error
+      console.error('Error uploading images:', error);
+    }
+  };
   const updateWarehouseStatus = async (orderNumber) => {
     try {
+      // const formData = new FormData();
+      // selectedImages.forEach((image) => formData.append('images', image));
+  
       const response = await axios.put(`http://localhost:5000/tht/refundRequest/updateWarehouseStatus/${orderNumber}`);
 
       if (response.status === 200) {
@@ -151,6 +142,7 @@ const Warehouse = ({ refundProducts }) => {
             return request;
           })
         );
+        
 
         // Update the button's className and innerText
         const warehouseStatusBtn = document.getElementById(`warehouseStatusBtn${orderNumber}`);
@@ -257,7 +249,7 @@ const Warehouse = ({ refundProducts }) => {
                   </btn>
                 </td>
                 <td>
-                  <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteRequest(request?.orderNumber)}>
+                  <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteRequest(request?.id)}>
                     <RiDeleteBin7Line></RiDeleteBin7Line>
                   </btn>
                 </td>
@@ -271,7 +263,7 @@ const Warehouse = ({ refundProducts }) => {
       <div>
         <div className="mt-32 mb-5">
           <hr className='border-2 border-gray-800 my-5'></hr>
-          <h1><span className="bg-gradient-to-r from-blue-800 to-red-800 text-transparent bg-clip-text">Special Requests</span>  Need To Approved By warehouse</h1>
+          <h1><span className="bg-gradient-to-r from-blue-800 to-red-800 text-transparent bg-clip-text">Special Requests</span>  Need To Approved By Warehouse Man</h1>
           <p className='py-4'>These are all the list of special refund request at these moment. Here you can check and update the special refund request information.And then please approved their refund request as soon as possible.  </p>
         </div>
 
@@ -345,7 +337,7 @@ const Warehouse = ({ refundProducts }) => {
                     </btn>
                   </td>
                   <td>
-                    <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteRequest(request?.orderNumber)}>
+                    <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteRequest(request?.id)}>
                       <RiDeleteBin7Line></RiDeleteBin7Line>
                     </btn>
                   </td>

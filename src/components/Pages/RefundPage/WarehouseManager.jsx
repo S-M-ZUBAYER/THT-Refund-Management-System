@@ -53,11 +53,11 @@ const WarehouseManager = ({ refundProducts }) => {
     fetchData();
   }, []);
 
-  const deleteRequest = async (orderNumber) => {
+  const deleteRequest = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/tht/refundRequest/delete/${orderNumber}`);
+      await axios.delete(`http://localhost:5000/tht/refundRequest/delete/${id}`);
       toast.success('User deleted successfully');
-      setAllWarehouseManagerRequest((prevRequests) => prevRequests.filter((request) => request?.orderNumber !== orderNumber));
+      setAllWarehouseManagerRequest((prevRequests) => prevRequests.filter((request) => request?.id !== id));
     } catch (error) {
       console.error('Error deleting user:', error);
       toast.error('Failed to delete user');
@@ -200,7 +200,7 @@ const WarehouseManager = ({ refundProducts }) => {
                 <td className="text-start pl-2 py-2 font-semibold">{request?.orderNumber}</td>
                 <td className="text-start  py-2">{request?.customerUserName}</td>
                 <td className="text-start py-2">{request?.customerReturnTrackingNumber}</td>
-                <Link to={`/details/${request?.orderNumber}`}> 
+                <Link to={`/refund/details/${request?.orderNumber}`}> 
                 <td className="text-start py-2 cursor-pointer">
                     <btn className="bg-lime-200 rounded-tl-lg rounded-br-lg px-5 py-1">Details</btn>
                 </td>
@@ -211,7 +211,7 @@ const WarehouseManager = ({ refundProducts }) => {
                   </btn>
                 </td>
                 <td>
-                  <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteRequest(request?.orderNumber)}>
+                  <btn className="text-red-500 flex justify-center hover:cursor-pointer" onClick={() => deleteRequest(request?.id)}>
                     <RiDeleteBin7Line></RiDeleteBin7Line>
                   </btn>
                 </td>

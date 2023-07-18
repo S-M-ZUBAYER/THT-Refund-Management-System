@@ -35,7 +35,7 @@ export const  routes=createBrowserRouter([
         element:<PrivateRoute><Refund></Refund></PrivateRoute>
     },
     {
-        path:"/details/:orderNumber",
+        path:"refund/details/:orderNumber",
         element:<PrivateRoute><DetailsLayout></DetailsLayout></PrivateRoute>,
     },
     {

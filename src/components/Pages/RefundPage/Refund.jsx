@@ -6,6 +6,8 @@ import Warehouse from './Warehouse';
 import { AuthContext } from '../../../context/UserContext';
 import LeaderStatus from './LeaderStatus';
 import WarehouseManager from './WarehouseManager';
+import Finance from './Finance';
+import StatusBar from './StatusBar';
 
 const Refund = () => {
 
@@ -57,7 +59,22 @@ const Refund = () => {
                     <WarehouseManager></WarehouseManager> </>
             }
 
+{
+                user?.role === "Finance" && <> <div className="mt-16 mb-5">
+                    <h1>Requests Need To Approved By Finance</h1>
+                    <p className='py-4'>These are all the list of refund request at these moment. Here you can check and update the refund request information.And then please approved their refund request.  </p>
+                </div>
 
+                    <Finance></Finance> </>
+            }
+
+<div className="mt-32 mb-5">
+                    <hr className='border-2 border-gray-800 my-5'></hr>
+                    <h1><span className="bg-gradient-to-r from-green-800 to-blue-800 text-transparent bg-clip-text">Refund Request Status Bar</span></h1>
+                    <p className='py-4'>These are all the list of special refund request at these moment. Here you can see the current condition of any request. And also you can check all the information about the refund request.  </p>
+                </div>
+
+<StatusBar></StatusBar>
 
         </div>
     );

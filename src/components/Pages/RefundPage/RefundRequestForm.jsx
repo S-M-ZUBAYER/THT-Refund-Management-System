@@ -23,7 +23,7 @@ const RefundRequestForm = () => {
   const [customerBankAccountName, setCustomerBankAccountName] = useState('');
   const [customerBankSwift, setCustomerBankSwift] = useState('');
   const [remarks, setRemarks] = useState('');
-  const [applicantName, setApplicantName] = useState('');
+  const [applicantName, setApplicantName] = useState(user?.customerUserName );
   const [applicationDate, setApplicationDate] = useState(new Date().toLocaleDateString());
   const [countryCode, setCountryCode] = useState("");
   const [timeNumber, setTimeNumber] = useState("");
@@ -83,7 +83,9 @@ const RefundRequestForm = () => {
       customerBankAccountName,
       customerBankSwift,
       remarks,
-      applicantName,
+      warehouseImg:"",
+      financeImg:"",
+      applicantName:user?.name,
       applicationDate: applicationDate,
       customerServiceStatus: "true",
       customerServiceLeaderStatus: "false",
@@ -128,6 +130,7 @@ const RefundRequestForm = () => {
         setCustomerBankSwift("");
         setRemarks("");
         setApplicantName("");
+        setSpecial(false);
         // setApplicationDate("");
 
 
