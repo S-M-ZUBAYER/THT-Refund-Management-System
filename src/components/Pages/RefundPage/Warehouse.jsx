@@ -6,6 +6,7 @@ import { RiDeleteBin7Line } from 'react-icons/ri';
 // Import the correct DisplaySpinner component based on its actual location
 import DisplaySpinner from '../../Loading/DisplaySpinner';
 import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Warehouse = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -125,41 +126,7 @@ const Warehouse = () => {
       console.error('Error uploading images:', error);
     }
   };
-  const updateWarehouseStatus = async (orderNumber) => {
-    try {
-      // const formData = new FormData();
-      // selectedImages.forEach((image) => formData.append('images', image));
-  
-      const response = await axios.put(`http://localhost:5000/tht/refundRequest/updateWarehouseStatus/${orderNumber}`);
 
-      if (response.status === 200) {
-        // Update the warehouse status locally in the state
-        setAllWarehouseRequest((prevRefundRequest) =>
-          prevRefundRequest.map((request) => {
-            if (request.orderNumber === orderNumber) {
-              return { ...request, warehouseStatus: true };
-            }
-            return request;
-          })
-        );
-        
-
-        // Update the button's className and innerText
-        const warehouseStatusBtn = document.getElementById(`warehouseStatusBtn${orderNumber}`);
-        if (warehouseStatusBtn) {
-          warehouseStatusBtn.className = "bg-lime-200 px-5 rounded-tl-lg rounded-br-lg py-1";
-          warehouseStatusBtn.innerText = "Done";
-        }
-
-        toast.success('Warehouse status updated successfully');
-      } else {
-        toast.error('Failed to update warehouse status');
-      }
-    } catch (error) {
-      console.error('Error updating warehouse status:', error);
-      toast.error('Failed to update warehouse status');
-    }
-  };
 
 
   const saveRequest = (orderNumber, updatedRequest) => {
@@ -205,8 +172,7 @@ const Warehouse = () => {
             <th className="text-start pl-2 py-2">Order Number</th>
             <th className="text-start pl-2 py-2">Customer Name</th>
             <th className="text-start py-2">Tracking Number</th>
-            <th className="text-start hidden md:block py-2">Upload Image</th>
-            <th className="text-start py-2">Status</th>
+            <th className="text-start hidden md:block py-2">Details</th>
             <th className="align-middle">Edit</th>
             <th className="align-middle">Delete</th>
           </tr>
@@ -225,24 +191,12 @@ const Warehouse = () => {
                 <td className="text-start pl-2 py-2 font-semibold">{request?.orderNumber}</td>
                 <td className="text-start  py-2">{request?.customerUserName}</td>
                 <td className="text-start py-2">{request?.customerReturnTrackingNumber}</td>
-                <td className="text-start hidden md:block">
-
-                  <input className='mt-5 mb-8 required bg-white' type="file" multiple onChange={handleImageChange} accept="image/*" />
-
+                <Link to={`/refund/details/${request?.orderNumber}`}> 
+                <td className="text-start py-2 cursor-pointer">
+                    <btn className="bg-lime-200 rounded-tl-lg rounded-br-lg px-5 py-1">Details</btn>
                 </td>
-                <td className="text-start py-2">
-                  {request?.warehouseStatus === true ? (
-                    <btn className="bg-lime-200 rounded-tl-lg rounded-br-lg px-5 py-1">Done</btn>
-                  ) : (
-                    <btn
-                      onClick={() => updateWarehouseStatus(request?.orderNumber)}
-                      id={`warehouseStatusBtn${request?.orderNumber}`}
-                      className="bg-red-300 rounded-tl-lg rounded-br-lg px-2 py-1 hover:cursor-pointer"
-                    >
-                      Approve
-                    </btn>
-                  )}
-                </td>
+                </Link>
+                
                 <td>
                   <btn className="text-blue-500 flex justify-center hover:cursor-pointer" onClick={() => openEditModal(request)}>
                     <FiEdit></FiEdit>
@@ -294,8 +248,7 @@ const Warehouse = () => {
               <th className="text-start pl-2 py-2">Order Number</th>
               <th className="text-start pl-2 py-2">Customer Name</th>
               <th className="text-start py-2">Tracking Number</th>
-              <th className="text-start hidden md:block py-2">Upload Image</th>
-              <th className="text-start py-2">Status</th>
+              <th className="text-start py-2">Details</th>
               <th className="align-middle">Edit</th>
               <th className="align-middle">Delete</th>
             </tr>
@@ -313,24 +266,12 @@ const Warehouse = () => {
                   <td className="text-start pl-2 py-2 font-semibold">{request?.orderNumber}</td>
                   <td className="text-start py-2">{request?.customerUserName}</td>
                   <td className="text-start py-2">{request?.customerReturnTrackingNumber}</td>
-                  <td className="text-start hidden md:block">
-
-                    <input className='mt-5 mb-8 required bg-white' type="file" multiple onChange={handleImageChange} accept="image/*" />
-
-                  </td>
-                  <td className="text-start py-2">
-                    {request?.warehouseStatus === true ? (
-                      <btn className="bg-lime-200 rounded-tl-lg rounded-br-lg px-5 py-1">Done</btn>
-                    ) : (
-                      <btn
-                        onClick={() => updateWarehouseStatus(request?.orderNumber)}
-                        id={`warehouseStatusBtn${request?.orderNumber}`}
-                        className="bg-red-300 rounded-tl-lg rounded-br-lg px-2 py-1 hover:cursor-pointer"
-                      >
-                        Approve
-                      </btn>
-                    )}
-                  </td>
+                  <Link to={`/refund/details/${request?.orderNumber}`}> 
+                <td className="text-start py-2 cursor-pointer">
+                    <btn className="bg-lime-200 rounded-tl-lg rounded-br-lg px-5 py-1">Details</btn>
+                </td>
+                </Link>
+                  
                   <td>
                     <btn className="text-blue-500 flex justify-center hover:cursor-pointer" onClick={() => openEditModal(request)}>
                       <FiEdit></FiEdit>
