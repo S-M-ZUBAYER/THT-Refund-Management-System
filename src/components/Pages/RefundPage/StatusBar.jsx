@@ -224,35 +224,34 @@ const StatusBar = () => {
                             <tr key={request.orderNumber} className="my-5">
                                 <td className="text-start pl-2 py-2 font-semibold">{index + 1}</td>
                                 <td className="text-start pl-2 py-2 font-semibold">{request?.customerUserName}</td>
-                                <td className="text-start  py-2">{request?.customerReturnTrackingNumber}</td>
+                                <td className="text-start bg  py-2">{request?.customerReturnTrackingNumber}</td>
                                 <td>
                                    {
-                                    request?.customerServiceLeaderStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
+                                    request?.customerServiceLeaderStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
                                 }   
                                 </td>
                                 <td>
                                    {
-                                    request?.customerServiceStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
+                                    request?.wareHouseStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
                                 }   
                                 </td>
                               
-                                
                                 <td>
                                    {
-                                    request?.wareHouseStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
+                                    request?.warehouseManagerStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
                                 }   
                                 </td>
                                 <td>
                                    {
-                                    request?.warehouseManagerStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
+                                    request?.financeStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
                                 }   
                                 </td>
                                 <Link to={`/refund/details/${request?.orderNumber}`}>
@@ -270,7 +269,7 @@ const StatusBar = () => {
             <div>
                 <div className="mt-32 mb-5">
                     <hr className='border-2 border-gray-800 my-5'></hr>
-                    <h1><span className="bg-gradient-to-r from-blue-800 to-red-800 text-transparent bg-clip-text">Special Requests</span>  Need To Approved By Warehouse Man</h1>
+                    <h1><span className="bg-gradient-to-r from-green-800 to-blue-800 text-transparent bg-clip-text">Special Requests</span>  Need To Approved By Warehouse Man</h1>
                     <p className='py-4'>These are all the list of special refund request at these moment. Here you can check and update the special refund request information.And then please approved their refund request as soon as possible.  </p>
                 </div>
 
@@ -302,7 +301,6 @@ const StatusBar = () => {
                             <th className="text-start py-2">Tracking Number</th>
                             <th className="text-start pl-2 py-2">CS Leader</th>
                             <th className="text-start pl-2 py-2">warehouse</th>
-                            <th className="text-start py-2">WH manager</th>
                             <th className="text-start py-2">Finance</th>
                             <th className="text-start py-2">Details</th>
 
@@ -322,32 +320,24 @@ const StatusBar = () => {
                                 <td className="text-start  py-2">{request?.customerReturnTrackingNumber}</td>
                                 <td>
                                    {
-                                    request?.customerServiceLeaderStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
+                                    request?.customerServiceLeaderStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
+                                }   
+                                </td>
+                            
+                                <td>
+                                   {
+                                    request?.wareHouseStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
                                 }   
                                 </td>
                                 <td>
                                    {
-                                    request?.customerServiceStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
-                                }   
-                                </td>
-                              
-                                
-                                <td>
-                                   {
-                                    request?.wareHouseStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
-                                }   
-                                </td>
-                                <td>
-                                   {
-                                    request?.warehouseManagerStatus? 
-                                    <btn>Approved</btn> :
-                                    <btn>processing</btn>
+                                    request?.financeStatus==="true"? 
+                                    <btn className="bg-gradient-to-tr from-cyan-400 to-green-400 px-2 py-1 rounded-tl-lg rounded-br-lg">Approved</btn> :
+                                    <btn className="bg-gradient-to-tr from-yellow-400 to-pink-400 px-2 py-1 rounded-tl-lg rounded-br-lg">processing</btn>
                                 }   
                                 </td>
                                 <Link to={`/refund/details/${request?.orderNumber}`}>
